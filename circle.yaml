@@ -21,11 +21,8 @@ dependencies:
       cat << VARS > .env
       SECRET_KEY_BASE=testsecret
       RAILS_ENV=test
-
       POSTGRES_USER = postgres
       POSTGRES_PASSWORD = yourpassword
-
-      DATABASE_URL=postgresql://postgres:yourpassword@postgres:5432/testing_db?encoding=utf8&pool=5&timeout=5000
       VARS
 
     # compile assets; assets will be copied into both the web server image and the application server image

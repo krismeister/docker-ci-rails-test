@@ -1,4 +1,11 @@
----
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  port: 5432
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  database: docker_example_dev
 
 development:
   encoding: unicode
