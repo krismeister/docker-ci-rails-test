@@ -5,7 +5,7 @@ development:
   url: <%= ENV['DATABASE_URL'].gsub('?', '_development?') %>
 
 test:
-  url: <%= ENV['DATABASE_URL'].gsub('?', '_test?') %>
+  url: postgresql://postgres:yourpassword@postgres:5432/testing_db?encoding=utf8&pool=5&timeout=5000
 
 staging:
   url: <%= ENV['DATABASE_URL'].gsub('?', '_staging?') %>
