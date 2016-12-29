@@ -5,17 +5,17 @@ app_path = ENV['RAILS_ROOT']
 working_directory app_path
 
 # Define where Unicorn should write its PID file
-pid "#{app_path}/tmp/pids/unicorn.pid"
+# pid "#{app_path}/tmp/pids/unicorn.pid"
 
 # Bind Unicorn to the container's default route, at port 3000
 listen "0.0.0.0:3000"
 
 # Define where Unicorn should write its log files
-stderr_path "#{app_path}/log/unicorn.stderr.log"
-stdout_path "#{app_path}/log/unicorn.stdout.log"
+# stderr_path "#{app_path}/log/unicorn.stderr.log"
+# stdout_path "#{app_path}/log/unicorn.stdout.log"
 
 # Define the number of workers Unicorn should spin up.
-# A new Rails app just needs one. You would scale this 
+# A new Rails app just needs one. You would scale this
 # higher in the future once your app starts getting traffic.
 # See https://unicorn.bogomips.org/TUNING.html
 worker_processes 1
@@ -30,7 +30,7 @@ end
 preload_app true
 
 #
-# Below we define how our workers should be spun up. 
+# Below we define how our workers should be spun up.
 # See https://unicorn.bogomips.org/Unicorn/Configurator.html
 #
 
