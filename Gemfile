@@ -17,6 +17,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'jbuilder', '~> 2.0'
 # Use Unicorn as the app server
 gem 'unicorn'
+# jquery rails
+gem 'jquery-rails'
 
 group :development do
   gem 'spring'
