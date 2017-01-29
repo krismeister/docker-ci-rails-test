@@ -20,12 +20,14 @@ gem 'unicorn'
 # jquery rails
 gem 'jquery-rails'
 
+group :development, :test do
+  gem 'sshkit'
+  gem 'rspec-rails'
+end
 group :development do
   gem 'spring'
 end
 
-
-group :development, :test do
-  gem 'sshkit'
-  gem 'rspec-rails'
+group :test do
+  gem 'rails_helper'
 end
