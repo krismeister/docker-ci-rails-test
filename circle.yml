@@ -21,8 +21,8 @@ dependencies:
       cat << VARS > .env
       SECRET_KEY_BASE=testsecret
       RAILS_ENV=test
-      POSTGRES_USER = postgres
-      POSTGRES_PASSWORD = yourpassword
+      POSTGRES_USER=test_postgres_user
+      POSTGRES_PASSWORD=test_postgres_password
       VARS
 
     # compile assets; assets will be copied into both the web server image and the application server image
