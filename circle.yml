@@ -26,6 +26,7 @@ dependencies:
       VARS
 
     # compile assets; assets will be copied into both the web server image and the application server image
+    - gem install bundler 1.14.3
     - bundle install
     - bundle exec rake assets:precompile
 
