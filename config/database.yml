@@ -7,15 +7,15 @@ default: &default
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   database: docker_example_dev
 
-
 development:
   <<: *default
-  database: cicle_ci_dev
+  database: cicle_ci_dev2
 
 test:
   <<: *default
   database: cicle_ci_test
 
-# production:
-#  <<: *default
+production:
+  <<: *default
+  username: whyme
 #  database: your_production_db_name #CHANGE ME

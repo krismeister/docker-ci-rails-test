@@ -1,8 +1,13 @@
 app:
-  
+
   # map our application source code, in full, to the application root of our container
   volumes:
     - .:/var/www/docker_example
+db:
+  # this gives access to mac to our postgres data
+  # connect to postgress on mac port
+  ports:
+    - "5432:5432"
 
 web:
 
