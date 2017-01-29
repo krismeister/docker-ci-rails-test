@@ -1,3 +1,5 @@
+# rename this file extension to .yml
+
 app:
 
   # map our application source code, in full, to the application root of our container
@@ -5,7 +7,7 @@ app:
     - .:/var/www/docker_example
 db:
   # this gives access to mac to our postgres data
-  # connect to postgress on mac port
+  # connect to postgress on mac port 5432
   ports:
     - "5432:5432"
 
