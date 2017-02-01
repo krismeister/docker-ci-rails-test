@@ -11,10 +11,13 @@ cp docker-compose.override.DEV docker-compose.override.yml
 ```
 docker-compose build
 docker-compose run app rake db:create
-docker-compose up -d
+docker-compose up -d //-d means in background
 
-# verify the postgres nginx and app are running
+# verify the postgres, nginx and app are running
 docker ps
+
+#stop this projects running docker instances
+docker-compose stop
 ```
 
 ## SSH into the Image
@@ -23,7 +26,7 @@ docker ps
 docker ps
 
 # connect with ssh to instance:
-docker exec -it d6ea71224e6b /bin/bash
+docker exec -it railsdockerexample_app_1 /bin/bash
 ```
 
 
