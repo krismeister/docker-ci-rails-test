@@ -21,11 +21,12 @@ dependencies:
       cat << VARS > .env
       SECRET_KEY_BASE=testsecret
       RAILS_ENV=test
-      POSTGRES_USER = postgres
-      POSTGRES_PASSWORD = yourpassword
+      POSTGRES_USER=test_postgres_user
+      POSTGRES_PASSWORD=test_postgres_password
       VARS
 
     # compile assets; assets will be copied into both the web server image and the application server image
+    - gem install bundler -v "=1.14.3"
     - bundle install
     - bundle exec rake assets:precompile
 
@@ -54,17 +55,17 @@ deployment:
 
     commands:
       # tag the images we built with a repository name and deploy identifier
-      - docker tag $(docker images | grep dockerexample_app | awk '{ print $3 }') ccstump/dockerexample_app:$DEPLOY_TAG
-      - docker tag $(docker images | grep dockerexample_web | awk '{ print $3 }') ccstump/dockerexample_web:$DEPLOY_TAG
-      - docker tag $(docker images | grep postgres | awk '{ print $3 }') ccstump/dockerexample_db:$DEPLOY_TAG
+      - docker tag $(docker images | grep dockerexample_app | awk '{ print $3 }') dockercitests/dockerexample_app:$DEPLOY_TAG
+      - docker tag $(docker images | grep dockerexample_web | awk '{ print $3 }') dockercitests/dockerexample_web:$DEPLOY_TAG
+      - docker tag $(docker images | grep postgres | awk '{ print $3 }') dockercitests/dockerexample_db:$DEPLOY_TAG
 
       # log into Docker Hub so we can push our tagged images
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 
       # push tagged images
-      - docker push ccstump/dockerexample_app:$DEPLOY_TAG
-      - docker push ccstump/dockerexample_web:$DEPLOY_TAG
-      - docker push ccstump/dockerexample_db:$DEPLOY_TAG
+      - docker push dockercitests/dockerexample_app:$DEPLOY_TAG
+      - docker push dockercitests/dockerexample_web:$DEPLOY_TAG
+      - docker push dockercitests/dockerexample_db:$DEPLOY_TAG
 
       # run deploy script
       - bundle exec rake docker:deploy
