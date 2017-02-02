@@ -54,18 +54,23 @@ deployment:
     branch: master
 
     commands:
+      - docker images
+      - echo $(docker images | grep dockerexample_app | awk '{ print $3 }')
+      - echo DEPLOY_TAG = $DEPLOY_TAG
+      - echo DOCKER_USER = $DOCKER_USER
+      - echo DOCKER_PASS = $DOCKER_PASS
       # tag the images we built with a repository name and deploy identifier
       - docker tag $(docker images | grep dockerexample_app | awk '{ print $3 }') dockercitests/dockerexample_app:$DEPLOY_TAG
       - docker tag $(docker images | grep dockerexample_web | awk '{ print $3 }') dockercitests/dockerexample_web:$DEPLOY_TAG
       - docker tag $(docker images | grep postgres | awk '{ print $3 }') dockercitests/dockerexample_db:$DEPLOY_TAG
 
       # log into Docker Hub so we can push our tagged images
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS
 
       # push tagged images
-      - docker push dockercitests/dockerexample_app:$DEPLOY_TAG
-      - docker push dockercitests/dockerexample_web:$DEPLOY_TAG
-      - docker push dockercitests/dockerexample_db:$DEPLOY_TAG
+      - docker push dockercitests/railsdockerexample_app:$DEPLOY_TAG
+      - docker push dockercitests/railsdockerexample_web:$DEPLOY_TAG
+      - docker push dockercitests/railsdockerexample_db:$DEPLOY_TAG
 
       # run deploy script
       - bundle exec rake docker:deploy
