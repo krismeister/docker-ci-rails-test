@@ -1,9 +1,10 @@
 # Docker Example App
 
 ## Local environment setup
-Copy and rename `docker-compose.override.DEV` to `docker-compose.override.yml`. This file gives control on how your local machine will override the values in docker-compose.yml
+Copy and rename `docker-compose.override.DEV` to `docker-compose.override.yml`. This file gives control on how your local machine will override the values in docker-compose.yml. Copy and rename `.env-DEV` to `.env`
 ```
 cp docker-compose.override.DEV docker-compose.override.yml
+cp .env-DEV .env
 ```
 
 
@@ -11,6 +12,7 @@ cp docker-compose.override.DEV docker-compose.override.yml
 ```
 docker-compose build
 docker-compose run app rake db:create
+docker-compose run app rake db:migrate
 docker-compose up -d //-d means in background
 
 # verify the postgres, nginx and app are running
