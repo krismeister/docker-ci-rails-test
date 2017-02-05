@@ -1,18 +1,16 @@
 # rename this file extension to .yml
 
 app:
-
   # map our application source code, in full, to the application root of our container
   volumes:
     - .:/var/www/docker_example
 db:
-  # this gives access to mac to our postgres data
-  # connect to postgress on mac port 5432
+  # this gives access from mac to our postgres data
+  # connect to postgress from mac port 5432
   ports:
     - "5432:5432"
 
 web:
-
   # use whatever volumes are configured for the app container
   volumes_from:
     - app
