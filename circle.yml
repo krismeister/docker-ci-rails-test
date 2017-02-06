@@ -66,7 +66,7 @@ deployment:
       - docker tag $(docker images | grep postgres | awk '{ print $3 }') dockercitests/dockercirailstest_db:$DEPLOY_TAG
 
       # log into Docker Hub so we can push our tagged images
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker login -e '$(DOCKER_EMAIL)' -u '$(DOCKER_USER)' -p '$(DOCKER_PASS)'
 
       # push tagged images
       - docker push dockercitests/dockercirailstest_app:$DEPLOY_TAG
