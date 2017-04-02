@@ -28,7 +28,7 @@ docker-compose stop
 docker ps
 
 # connect with ssh to instance:
-docker exec -it railsdockerexample_app_1 /bin/bash
+docker exec -it dockercirailstest_app_1 /bin/bash
 ```
 
 
