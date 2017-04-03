@@ -1,8 +1,8 @@
 # service configuration for production database (Postgres)
 db:
 
-  # use db image pulled from Docker Hub
-  image: dockercitests/dockercirailstest_db:$DEPLOY_TAG
+  # use stock postgres image
+  image: postgres:9.4.5
 
   # persist the database between containers by storing it in a volume
   volumes:
