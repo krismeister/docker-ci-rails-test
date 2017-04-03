@@ -74,4 +74,4 @@ deployment:
       - docker push dockercitests/dockercirailstest_db:$DEPLOY_TAG
 
       # run deploy script
-      # - bundle exec rake docker:deploy
+      - bundle exec rake docker:deploy
