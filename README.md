@@ -57,25 +57,30 @@ ssh deploy@url.com
 Make directory .ssh on the remote server and log out
 ```bash
 mkdir .ssh
+mkdir .ssh/authorized_keys
 exit
 ```
 
 Push your ssh key to the authorized_keys file on the remote server
 ```bash
 scp ~/.ssh/id_rsa.pub deploy@url.com:~/.ssh/authorized_keys
+
+cat ~/.ssh/id_rsa.pub | ssh deploy@url.com "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+
+
 ```
 
 Make new deploy user
 ```
 ### make temp folder
 mkdir deleteme_circlecikey
-ssh-keygen -t rsa -f ./deleteme_circlecikey/temp
+ssh-keygen -t rsa -f ./deleteme_circlecikey/circleci
 
 # print private key and copy and paste into circleci
-cat ./deleteme_circlecikey/temp
+cat ./deleteme_circlecikey/circleci
 
 # print public key then copy and paste into digital ocean
-scp ./deleteme_circlecikey/temp.pub deploy@url.com:~/.ssh/authorized_keys
+cat ./deleteme_circlecikey/circleci.pub | ssh deploy@url.com "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 
 # delete the temp folder
 rm -r ./deleteme_circlecikey

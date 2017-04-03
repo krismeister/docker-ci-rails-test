@@ -60,18 +60,19 @@ deployment:
       - echo DOCKER_USER = $DOCKER_USER
       - echo DOCKER_PASS = $DOCKER_PASS
       - echo DOCKER_EMAIL = $DOCKER_EMAIL
+      - echo DOCKER_GROUP = $DOCKER_GROUP
       # tag the images we built with a repository name and deploy identifier
-      - docker tag $(docker images | grep dockercirailstest_app | awk '{ print $3 }') dockercitests/dockercirailstest_app:$DEPLOY_TAG
-      - docker tag $(docker images | grep dockercirailstest_web | awk '{ print $3 }') dockercitests/dockercirailstest_web:$DEPLOY_TAG
-      - docker tag $(docker images | grep postgres | awk '{ print $3 }') dockercitests/dockercirailstest_db:$DEPLOY_TAG
+      - docker tag $(docker images | grep dockercirailstest_app | awk '{ print $3 }') $DOCKER_GROUP/dockercirailstest_app:$DEPLOY_TAG
+      - docker tag $(docker images | grep dockercirailstest_web | awk '{ print $3 }') $DOCKER_GROUP/dockercirailstest_web:$DEPLOY_TAG
+      - docker tag $(docker images | grep postgres | awk '{ print $3 }') $DOCKER_GROUP/dockercirailstest_db:$DEPLOY_TAG
 
       # log into Docker Hub so we can push our tagged images
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 
       # push tagged images
-      - docker push dockercitests/dockercirailstest_app:$DEPLOY_TAG
-      - docker push dockercitests/dockercirailstest_web:$DEPLOY_TAG
-      - docker push dockercitests/dockercirailstest_db:$DEPLOY_TAG
+      - docker push $DOCKER_GROUP/dockercirailstest_app:$DEPLOY_TAG
+      - docker push $DOCKER_GROUP/dockercirailstest_web:$DEPLOY_TAG
+      - docker push $DOCKER_GROUP/dockercirailstest_db:$DEPLOY_TAG
 
       # run deploy script
       - bundle exec rake docker:deploy

@@ -63,8 +63,13 @@ namespace :docker do
   task pull: 'docker:login' do
     on server do
       within deploy_path do
-        %w{dockerexample_web dockerexample_app}.each do |image_name|
-          execute 'docker', 'pull', "#{ENV['DOCKER_USER']}/#{image_name}:#{deploy_tag}"
+#        %w{dockerexample_web dockerexample_app}.each do |image_name|
+#          execute 'docker', 'pull', "#{ENV['DOCKER_USER']}/#{image_name}:#{deploy_tag}"
+#        end
+
+
+        %w{dockercirailstest_web dockercirailstest_app}.each do |image_name|
+          execute 'docker', 'pull', "#{ENV['DOCKER_GROUP']}/#{image_name}:#{deploy_tag}"
         end
 
         execute 'docker', 'pull', 'postgres:9.4.5'
