@@ -3,7 +3,7 @@ db:
 
   # use the preferred version of the official Postgres image
   # see https://hub.docker.com/_/postgres/
-  image: postgres:9.4.5
+  image: postgres:9.6.2
 
   # sources environment variable configuration for our app
   env_file: .env

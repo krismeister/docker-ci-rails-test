@@ -2,7 +2,10 @@
 db:
 
   # use stock postgres image
-  image: postgres:9.4.5
+  image: postgres:9.6.2
+
+  # sources environment variable configuration for our app
+  env_file: .env
 
   # persist the database between containers by storing it in a volume
   volumes:
