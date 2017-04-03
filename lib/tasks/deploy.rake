@@ -81,7 +81,7 @@ namespace :docker do
   task migrate: 'deploy:configs' do
     on server do
       within deploy_path do
-        execute 'echo', 'deploy_tag='+deploy_tag , '>>', '.env'
+        execute 'echo', 'DEPLOY_TAG='+deploy_tag , '>>', '.env'
         with rails_env: deploy_env, deploy_tag: deploy_tag do
           execute 'docker-compose', '-f', 'docker-compose.production.yml', 'run', 'app', 'bundle', 'exec', 'rake', 'db:migrate'
         end
