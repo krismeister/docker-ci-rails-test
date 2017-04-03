@@ -17,5 +17,4 @@ test:
 
 production:
   <<: *default
-  username: whyme
-#  database: your_production_db_name #CHANGE ME
+  database: your_production_db_name #CHANGE ME
