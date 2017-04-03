@@ -39,6 +39,12 @@ ssh root@XXX.XXX.XXX.XXX
 #not sure if you need this one:
 sudo adduser deploy sudo
 sudo passwd deploy
+
+# make sure a docker group exists:
+sudo groupadd docker
+
+# make user part of docker group
+sudo usermod -aG docker deploy
 ```
 
 And Update the new password
