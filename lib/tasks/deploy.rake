@@ -83,7 +83,7 @@ namespace :docker do
       within deploy_path do
         execute 'echo', 'DEPLOY_TAG='+deploy_tag , '>>', '.env'
         with rails_env: deploy_env, deploy_tag: deploy_tag do
-            %w{'db:create' 'db:migrate'}.each do |db_stage|
+            %w{db:create db:migrate}.each do |db_stage|
                 execute 'docker-compose', '-f', 'docker-compose.production.yml', 'run', 'app', 'bundle', 'exec', 'rake', db_stage
             end
         end
