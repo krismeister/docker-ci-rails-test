@@ -1,6 +1,7 @@
 # use SSHKit directly instead of Capistrano
 require 'sshkit'
 require 'sshkit/dsl'
+include SSHKit::DSL
 
 # set the identifier used to used to tag our Docker images
 deploy_tag = ENV['DEPLOY_TAG']
