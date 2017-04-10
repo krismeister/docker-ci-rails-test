@@ -56,11 +56,7 @@ deployment:
     commands:
       - docker images
       - echo $(docker images | grep dockercirailstest_app | awk '{ print $3 }')
-      - echo DEPLOY_TAG = $DEPLOY_TAG
-      - echo DOCKER_USER = $DOCKER_USER
-      - echo DOCKER_PASS = $DOCKER_PASS
-      - echo DOCKER_EMAIL = $DOCKER_EMAIL
-      - echo DOCKER_GROUP = $DOCKER_GROUP
+
       # tag the images we built with a repository name and deploy identifier
       - docker tag $(docker images | grep dockercirailstest_app | awk '{ print $3 }') $DOCKER_GROUP/dockercirailstest_app:$DEPLOY_TAG
       - docker tag $(docker images | grep dockercirailstest_web | awk '{ print $3 }') $DOCKER_GROUP/dockercirailstest_web:$DEPLOY_TAG
