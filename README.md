@@ -1,4 +1,9 @@
-# Docker Example App
+# Docker Continous Integration with Docker
+
+## Continous Integration with CircleCi
+This repo is an example a Rails app with CircleCi continous integration. After any master commit: CircleCi builds the projects and deploys onto a staging server.
+
+Here are the CircleCi build logs: https://circleci.com/gh/krismeister/docker-ci-rails-test/tree/master
 
 ## Local environment setup
 Copy and rename `docker-compose.override.DEV` to `docker-compose.override.yml`. This file gives control on how your local machine will override the values in docker-compose.yml. Copy and rename `.env-DEV` to `.env`
