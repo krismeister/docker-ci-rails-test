@@ -1,16 +1,21 @@
 # rename this file extension to .yml
 
 app:
+
   # map our application source code, in full, to the application root of our container
+  # in production we actually copy all the files into place, there should be no live volume to this directory
   volumes:
     - .:/var/www/docker_example
+
 db:
-  # this gives access from mac to our postgres data
-  # connect to postgress from mac port 5432
+  # this gives access to the host to our postgres data base
+  # connect to postgress on the host (your mac) port 5432
   ports:
     - "5432:5432"
 
 web:
-  # use whatever volumes are configured for the app container
+
+  # When deploying to a server, you should build all the assets from the asset pipeline
+  # In DEV, we just map the entire app directory
   volumes_from:
     - app
